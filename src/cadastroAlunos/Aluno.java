@@ -36,11 +36,12 @@ public class Aluno {
         this.rendimento = rendimento;
     }
 
-    public static void cadastrarAluno(Aluno aluno) {
-        System.out.println("Nome: " + aluno.getNome());
-        System.out.println("Email: " + aluno.getEmail());
-        System.out.println("Rendimento: " + aluno.getRendimento());
-
-
+    @Override
+    public String toString() {
+        return "Aluno" +
+                "Nome: " + nome + '\'' +
+                "Email: " + email + '\'' +
+                "Rendimento: " + rendimento;
     }
 }
+
