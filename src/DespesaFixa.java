@@ -1,10 +1,9 @@
-package despesas;
-
 public class DespesaFixa extends Despesas{
     private String data;
 
-    public DespesaFixa(String nome, String descricao, double valor) {
+    public DespesaFixa(String nome, String descricao, double valor, String data) {
         super(nome, descricao, valor);
+        this.data = data;
     }
 
     public String getData() {

@@ -1,5 +1,3 @@
-package despesas;
-
 public class Despesas {
     private String nome;
     private String descricao;
@@ -36,4 +34,7 @@ public class Despesas {
     }
 
 
+    public double getTotal() {
+        return this.valor;
+    }
 }

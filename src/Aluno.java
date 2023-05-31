@@ -1,5 +1,3 @@
-package cadastroAlunos;
-
 public class Aluno {
 
     private String nome;
@@ -36,12 +34,5 @@ public class Aluno {
         this.rendimento = rendimento;
     }
 
-    @Override
-    public String toString() {
-        return "Aluno" +
-                "Nome: " + nome + '\'' +
-                "Email: " + email + '\'' +
-                "Rendimento: " + rendimento;
-    }
 }
 
