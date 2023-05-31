@@ -7,10 +7,6 @@ public class Utilitarios {
     private static final List<DespesaVariada> listDespesaVariada = new ArrayList<>();
     private static final List<Reserva> listReserva = new ArrayList<>();
 
-    public static void main(String[] args) {
-        menuApp();
-    }
-
     // MENUS
     public static void menuApp() {
         Scanner entrada = new Scanner(System.in);
