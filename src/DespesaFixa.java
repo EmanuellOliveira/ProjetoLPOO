@@ -12,4 +12,8 @@ public class DespesaFixa extends Despesas{
     public void setData(String data) {
         this.data = data;
     }
+
+    public double getValorFixa() {
+        return super.getValor();
+    }
 }

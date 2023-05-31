@@ -13,4 +13,8 @@ public class DespesaVariada extends Despesas{
     public void setClassificacao(int classificacao) {
         this.classificacao = classificacao;
     }
+
+    public double getValorVariada() {
+        return super.getValor();
+    }
 }

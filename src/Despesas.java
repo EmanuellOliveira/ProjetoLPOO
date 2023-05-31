@@ -33,8 +33,4 @@ public class Despesas {
         this.valor = valor;
     }
 
-
-    public double getTotal() {
-        return this.valor;
-    }
 }

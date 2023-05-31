@@ -3,7 +3,6 @@ import java.util.*;
 public class Utilitarios {
 
     private static final List<Aluno> listAluno = new ArrayList<>();
-    private static final List<Despesas> listDespesa = new ArrayList<>();
     private static final List<DespesaFixa> listDespesaFixa = new ArrayList<>();
     private static final List<DespesaVariada> listDespesaVariada = new ArrayList<>();
     private static final List<Reserva> listReserva = new ArrayList<>();
@@ -18,7 +17,7 @@ public class Utilitarios {
         int opcao;
 
         do {
-            System.out.println("APLICATIVO DE DIVISÃO DE DESPESAS");
+            System.out.println("\nAPLICATIVO DE DIVISÃO DE DESPESAS");
             System.out.println("******************************");
             System.out.println("1- Cadastrar aluno");
             System.out.println("2- Cadastrar despesa");
@@ -91,7 +90,7 @@ public class Utilitarios {
         } while (opcao != 0);
     } //OK
 
-    public static void menuDespesaFixa(){
+    public static void menuDespesaFixa() {
         int opcao;
         Scanner entrada = new Scanner(System.in);
         do {
@@ -125,7 +124,7 @@ public class Utilitarios {
         } while (opcao != 0);
     } //OK
 
-    public static void menuDespesaVariada(){
+    public static void menuDespesaVariada() {
         int opcao;
         Scanner entrada = new Scanner(System.in);
         do {
@@ -161,7 +160,7 @@ public class Utilitarios {
 
     }
 
-    public static void menuTipoDespesas(){
+    public static void menuTipoDespesas() {
         int opcao;
         Scanner entrada = new Scanner(System.in);
 
@@ -204,7 +203,7 @@ public class Utilitarios {
         Relatorios.gerarRelatorioAluno(listAluno, nomeDoArquivo);
     } //OK
 
-    public static void adicionarAluno(){
+    public static void adicionarAluno() {
         Scanner entrada = new Scanner(System.in);
         boolean adicionarMaisAlunos = true;
         do {
@@ -311,9 +310,9 @@ public class Utilitarios {
             int numeroAluno = entrada.nextInt();
 
             if (numeroAluno > 0 && numeroAluno <= listDespesaFixa.size()) {
-                listDespesaFixa.remove(numeroAluno-1);
+                listDespesaFixa.remove(numeroAluno - 1);
                 System.out.println("Aluno excluído com sucesso!");
-            }else{
+            } else {
                 System.out.println("Opção inválida!");
             }
         }
@@ -321,7 +320,7 @@ public class Utilitarios {
 
     //DESPESAS
 
-    public static void gerarRelatorioDespesas(){
+    public static void gerarRelatorioDespesas() {
 
         Scanner entrada = new Scanner(System.in);
         System.out.println("Insira o mês: ");
@@ -333,7 +332,7 @@ public class Utilitarios {
         Relatorios.gerarRelatorioDespesas(listDespesaFixa, listDespesaVariada, nomeDoArquivo);
     } //OK
 
-    public static void adicionarDespesasFixas(){
+    public static void adicionarDespesasFixas() {
         System.out.println("\n-----DESPESAS FIXAS-----");
         Scanner entrada = new Scanner(System.in);
         boolean adicionarMaisDespesas = true;
@@ -343,7 +342,7 @@ public class Utilitarios {
 
             System.out.println("Digite a descricao da despesa: ");
             String descricao = entrada.nextLine();
-            entrada.nextLine();
+            //entrada.nextLine();
 
             System.out.println("Digite a data da despesa: ");
             String data = entrada.nextLine();
@@ -451,15 +450,15 @@ public class Utilitarios {
             int numeroDespesa = entrada.nextInt();
 
             if (numeroDespesa > 0 && numeroDespesa <= listDespesaFixa.size()) {
-                listDespesaFixa.remove(numeroDespesa-1);
+                listDespesaFixa.remove(numeroDespesa - 1);
                 System.out.println("Despesa Fixa excluída com sucesso!");
-            }else{
+            } else {
                 System.out.println("Opção inválida!");
             }
         }
     } //OK
 
-    public static void adicionarDespesasVariadas(){
+    public static void adicionarDespesasVariadas() {
         System.out.println("\n-----DESPESAS VARIADAS-----");
         Scanner entrada = new Scanner(System.in);
         boolean adicionarMaisDespesas = true;
@@ -576,9 +575,9 @@ public class Utilitarios {
             int numeroDespesa = entrada.nextInt();
 
             if (numeroDespesa > 0 && numeroDespesa <= listDespesaVariada.size()) {
-                listDespesaVariada.remove(numeroDespesa-1);
+                listDespesaVariada.remove(numeroDespesa - 1);
                 System.out.println("Despesa Variada excluída com sucesso!");
-            }else{
+            } else {
                 System.out.println("Opção inválida!");
             }
         }
@@ -588,73 +587,99 @@ public class Utilitarios {
         Scanner entrada = new Scanner(System.in);
         boolean adicionarMaisReservas = true;
 
-        do {
-            System.out.println("Digite o número do aluno para adicionar a reserva: ");
-            int numeroAluno = entrada.nextInt();
-            entrada.nextLine();
-
-            if (numeroAluno > 0 && numeroAluno <= listAluno.size()) {
-                Aluno alunoSelecionado = listAluno.get(numeroAluno - 1);
-
-                double rendimento = alunoSelecionado.getRendimento();
-                double valorReserva = rendimento * 0.05;
-
-                Reserva reserva = new Reserva(alunoSelecionado, valorReserva);
-                listReserva.add(reserva);
-
-                System.out.println("Reserva cadastrada com sucesso para o aluno: " + alunoSelecionado.getNome());
-            } else {
-                System.out.println("Opção inválida!");
+        if (listAluno.isEmpty()) {
+            System.out.println("Não há alunos cadastrados!");
+        } else {
+            System.out.println("Lista de Alunos cadastrados: ");
+            for (int i = 0; i < listAluno.size(); i++) {
+                Aluno aluno = listAluno.get(i);
+                System.out.println((i + 1) + "." + aluno.getNome());
             }
+            do {
+                System.out.println("\nDigite o número do aluno para adicionar a reserva: ");
+                int numeroAluno = entrada.nextInt();
+                entrada.nextLine();
 
-            System.out.println("\nDeseja adicionar mais reservas?");
-            System.out.println("1 - Sim");
-            System.out.println("2 - Não");
+                if (numeroAluno > 0 && numeroAluno <= listAluno.size()) {
+                    Aluno alunoSelecionado = listAluno.get(numeroAluno - 1);
 
-            int resposta = entrada.nextInt();
-            entrada.nextLine();
+                    double rendimento = alunoSelecionado.getRendimento();
+                    double valorReserva = rendimento * 0.05;
 
-            if (resposta == 2) {
-                adicionarMaisReservas = false;
-            }
-        } while (adicionarMaisReservas);
+                    Reserva reserva = new Reserva(alunoSelecionado, valorReserva);
+                    listReserva.add(reserva);
+
+                    System.out.println("Reserva cadastrada com sucesso para o aluno: " + alunoSelecionado.getNome());
+                    System.out.println("Valor retirado do aluno: " + valorReserva);
+                } else {
+                    System.out.println("Opção inválida!");
+                }
+
+                System.out.println("\nDeseja adicionar mais reservas?");
+                System.out.println("1 - Sim");
+                System.out.println("2 - Não");
+
+                int resposta = entrada.nextInt();
+                entrada.nextLine();
+
+                if (resposta == 2) {
+                    adicionarMaisReservas = false;
+                }
+            } while (adicionarMaisReservas);
+        }
     }
 
     public static void dividirDespesasIgualmente() {
-            double totalDespesas = 0;
-            double valorDespesaPorAluno = 0;
-            double totalDespesaVariadaPrioridade4e5 = 0;
+        if (listAluno.isEmpty()) {
+            System.out.println("Não há alunos cadastrados!");
+            return;
+        }
 
-            for (Despesas despesa : listDespesa) {
-                if (despesa instanceof DespesaVariada) {
-                    DespesaVariada despesaVariada = (DespesaVariada) despesa;
-                    if (despesaVariada.getClassificacao() == 4 || despesaVariada.getClassificacao() == 5) {
-                        totalDespesaVariadaPrioridade4e5 += despesaVariada.getValor();
-                    }
+        double totalDespesasFixas = calcularTotalDespesasFixas();
+        double totalDespesasVariadas = calcularTotalDespesasVariadas();
+
+        double totalDespesas = totalDespesasFixas + totalDespesasVariadas;
+        double valorDespesaPorAluno = totalDespesas / listAluno.size();
+
+        for (Aluno aluno : listAluno) {
+            System.out.println("\nAluno: " + aluno.getNome());
+            double valorContribuicao = calcularValorContribuicao(aluno, valorDespesaPorAluno);
+            System.out.println("Valor da contribuição mensal para o aluno " + aluno.getNome() + ": " + valorContribuicao);
+        }
+    }
+
+    private static double calcularTotalDespesasFixas() {
+        double totalDespesasFixas = 0;
+        for (DespesaFixa despesaFixa : listDespesaFixa) {
+                totalDespesasFixas += despesaFixa.getValorFixa();
+            }
+            return totalDespesasFixas;
+        }
+
+
+    private static double calcularTotalDespesasVariadas() {
+        double totalDespesasVariadas = 0;
+        for (DespesaVariada despesaVariada : listDespesaVariada) {
+                if (despesaVariada.getClassificacao() == 4 || despesaVariada.getClassificacao() == 5) {
+                    totalDespesasVariadas += despesaVariada.getValorVariada();
                 }
-                totalDespesas += despesa.getTotal() + totalDespesaVariadaPrioridade4e5;;
             }
+        return totalDespesasVariadas;
+    }
 
-            if (listAluno.isEmpty()) {
-                System.out.println("Não há alunos cadastrados!");
-                return;
+    private static double calcularValorContribuicao(Aluno aluno, double valorDespesaPorAluno) {
+        double valorContribuicao = valorDespesaPorAluno;
+
+        for (Reserva reserva : listReserva) {
+            if (reserva.getAluno() == aluno) {
+                valorContribuicao -= reserva.getValor();
             }
+        }
 
-            valorDespesaPorAluno = totalDespesas / listAluno.size();
-
-            for (Aluno aluno : listAluno) {
-                System.out.println("Aluno: " + aluno.getNome());
-                double valorContribuicao = valorDespesaPorAluno;
-
-                for (Reserva reserva : listReserva) {
-                    if (reserva.getAluno() == aluno) {
-                        valorContribuicao -= reserva.getValor();
-                    }
-                }
-                System.out.println("Valor da contribuição mensal para o aluno " + aluno.getNome() + ": " + valorContribuicao);
-            }
+        return valorContribuicao;
     }
 }
+
 
 
 
