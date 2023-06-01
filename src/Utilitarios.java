@@ -18,6 +18,7 @@ public class Utilitarios {
             System.out.println("1- Cadastrar aluno");
             System.out.println("2- Cadastrar despesa");
             System.out.println("3- Calcular divisão");
+            System.out.println("4- Relatórios");
             System.out.println("0 - Sair");
             System.out.println("******************************");
 
@@ -34,6 +35,10 @@ public class Utilitarios {
                 case 3:
                     dividirDespesasIgualmente();
                     break;
+                case 4:
+                    menuRelatorios();
+                    ;
+                    break;
                 case 0:
                     System.out.println("Programa encerrado com sucesso!");
                     break;
@@ -42,19 +47,18 @@ public class Utilitarios {
                     break;
             }
         } while (opcao != 0);
-    } //OK
+    } // OK
 
     public static void menuAluno() {
         int opcao;
         Scanner entrada = new Scanner(System.in);
         do {
-            System.out.println("CADASTRO DE ALUNO");
+            System.out.println("\nCADASTRO DE ALUNOS");
             System.out.println("******************************");
             System.out.println("1 - Adicionar");
             System.out.println("2 - Editar");
             System.out.println("3 - Excluir");
             System.out.println("4 - Adicionar Reserva");
-            System.out.println("5 - Gerar relatório");
             System.out.println("0 - Voltar");
             System.out.println("******************************");
 
@@ -74,8 +78,43 @@ public class Utilitarios {
                 case 4:
                     adicionarReserva();
                     break;
-                case 5:
+                case 0:
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
+        } while (opcao != 0);
+    } // OK
+
+    public static void menuRelatorios() {
+        int opcao;
+        Scanner entrada = new Scanner(System.in);
+        do {
+            System.out.println("\nRELATÓRIOS");
+            System.out.println("******************************");
+            System.out.println("1 - Gerar relatório de Alunos");
+            System.out.println("2 - Gerar relatório de Alunos Inadimplentes");
+            System.out.println("3 - Gerar relatório de Reservas");
+            System.out.println("4 - Gerar relatório de Despesas");
+            System.out.println("0 - Voltar");
+            System.out.println("******************************");
+
+            opcao = entrada.nextInt();
+            entrada.nextLine();
+
+            switch (opcao) {
+                case 1:
                     gerarRelatorioAluno();
+                    break;
+                case 2:
+                    gerarRelatorioAlunoInadimplente();
+                    break;
+                case 3:
+                    gerarRelatorioReserva();
+                    break;
+                case 4:
+                    gerarRelatorioDespesas();
                     break;
                 case 0:
                     break;
@@ -84,13 +123,13 @@ public class Utilitarios {
                     break;
             }
         } while (opcao != 0);
-    } //OK
+    }
 
     public static void menuDespesaFixa() {
         int opcao;
         Scanner entrada = new Scanner(System.in);
         do {
-            System.out.println("CADASTRO DE DESPESAS FIXAS");
+            System.out.println("\nCADASTRO DE DESPESAS FIXAS");
             System.out.println("******************************");
             System.out.println("1 - Adicionar");
             System.out.println("2 - Editar");
@@ -118,13 +157,13 @@ public class Utilitarios {
                     break;
             }
         } while (opcao != 0);
-    } //OK
+    } // OK
 
     public static void menuDespesaVariada() {
         int opcao;
         Scanner entrada = new Scanner(System.in);
         do {
-            System.out.println("CADASTRO DE DESPESAS VARIADAS");
+            System.out.println("\nCADASTRO DE DESPESAS VARIADAS");
             System.out.println("******************************");
             System.out.println("1 - Adicionar");
             System.out.println("2 - Editar");
@@ -153,7 +192,6 @@ public class Utilitarios {
             }
         } while (opcao != 0);
 
-
     }
 
     public static void menuTipoDespesas() {
@@ -161,11 +199,10 @@ public class Utilitarios {
         Scanner entrada = new Scanner(System.in);
 
         do {
-            System.out.println("Qual tipo de despesas deseja adicionar?");
+            System.out.println("\nQual tipo de despesas deseja adicionar?");
             System.out.println("******************************");
             System.out.println("1 - Despesa Fixa");
             System.out.println("2 - Despesa Variada");
-            System.out.println("3 - Criar relatório geral de despesas");
             System.out.println("0 - Voltar");
             System.out.println("******************************");
 
@@ -179,9 +216,6 @@ public class Utilitarios {
                 case 2:
                     menuDespesaVariada();
                     break;
-                case 3:
-                    gerarRelatorioDespesas();
-                    break;
                 case 0:
                     break;
                 default:
@@ -192,12 +226,12 @@ public class Utilitarios {
 
     }
 
-    //ALUNOS
+    // ALUNOS
 
     public static void gerarRelatorioAluno() {
         String nomeDoArquivo = "alunos.txt";
         Relatorios.gerarRelatorioAluno(listAluno, nomeDoArquivo);
-    } //OK
+    } // OK
 
     public static void adicionarAluno() {
         Scanner entrada = new Scanner(System.in);
@@ -237,7 +271,7 @@ public class Utilitarios {
                 adicionarMaisAlunos = false;
             }
         } while (adicionarMaisAlunos);
-    } //OK
+    } // OK
 
     public static void editarAluno() {
         if (listAluno.isEmpty()) {
@@ -290,7 +324,7 @@ public class Utilitarios {
                 }
             }
         }
-    } //OK
+    } // OK
 
     public static void excluirAluno() {
         if (listAluno.isEmpty()) {
@@ -312,9 +346,9 @@ public class Utilitarios {
                 System.out.println("Opção inválida!");
             }
         }
-    } //OK
+    } // OK
 
-    //DESPESAS
+    // DESPESAS
 
     public static void gerarRelatorioDespesas() {
 
@@ -326,7 +360,7 @@ public class Utilitarios {
 
         String nomeDoArquivo = "despesas_" + mes + "_" + ano + ".txt";
         Relatorios.gerarRelatorioDespesas(listDespesaFixa, listDespesaVariada, nomeDoArquivo);
-    } //OK
+    } // OK
 
     public static void adicionarDespesasFixas() {
         System.out.println("\n-----DESPESAS FIXAS-----");
@@ -338,7 +372,6 @@ public class Utilitarios {
 
             System.out.println("Digite a descricao da despesa: ");
             String descricao = entrada.nextLine();
-            //entrada.nextLine();
 
             System.out.println("Digite a data da despesa: ");
             String data = entrada.nextLine();
@@ -370,7 +403,7 @@ public class Utilitarios {
                 adicionarMaisDespesas = false;
             }
         } while (adicionarMaisDespesas);
-    } //OK
+    } // OK
 
     public static void editarDespesasFixas() {
         System.out.println("\n-----DESPESAS FIXAS-----");
@@ -429,7 +462,7 @@ public class Utilitarios {
                 }
             }
         }
-    } //OK
+    } // OK
 
     public static void excluirDespesasFixas() {
         System.out.println("\n-----DESPESAS FIXAS-----");
@@ -452,7 +485,7 @@ public class Utilitarios {
                 System.out.println("Opção inválida!");
             }
         }
-    } //OK
+    } // OK
 
     public static void adicionarDespesasVariadas() {
         System.out.println("\n-----DESPESAS VARIADAS-----");
@@ -464,7 +497,6 @@ public class Utilitarios {
 
             System.out.println("Digite a descricao da despesa: ");
             String descricao = entrada.nextLine();
-            entrada.nextLine();
 
             System.out.println("Digite a classificação da despesa: ");
             int classificacao = entrada.nextInt();
@@ -496,7 +528,7 @@ public class Utilitarios {
                 adicionarMaisDespesas = false;
             }
         } while (adicionarMaisDespesas);
-    } //OK
+    } // OK
 
     public static void editarDespesasVariadas() {
         System.out.println("\n-----DESPESAS VARIADAS-----");
@@ -542,7 +574,6 @@ public class Utilitarios {
                         System.out.println("Digite a nova classificação: ");
                         int classificacao = entrada.nextInt();
                         despesaVariadaSelecionada.setClassificacao(classificacao);
-                        entrada.nextLine();
 
                         System.out.println("\nDespesa Variada editada com sucesso!");
                         break;
@@ -554,7 +585,7 @@ public class Utilitarios {
                 }
             }
         }
-    } //OK
+    } // OK
 
     public static void excluirDespesasVariadas() {
         System.out.println("\n-----DESPESAS VARIADAS-----");
@@ -577,7 +608,7 @@ public class Utilitarios {
                 System.out.println("Opção inválida!");
             }
         }
-    } //OK
+    } // OK
 
     public static void adicionarReserva() {
         Scanner entrada = new Scanner(System.in);
@@ -625,58 +656,77 @@ public class Utilitarios {
         }
     }
 
+    public static void gerarRelatorioReserva() {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Insira o mês: ");
+        String mes = entrada.nextLine();
+        System.out.println("Insira o ano: ");
+        String ano = entrada.nextLine();
+
+        String nomeDoArquivo = "reservas_" + mes + "_" + ano + ".txt";
+        Relatorios.gerarRelatorioReserva(listReserva, nomeDoArquivo);
+    }
+
+    public static void gerarRelatorioAlunoInadimplente() {
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Insira o mês: ");
+        String mes = entrada.nextLine();
+        System.out.println("Insira o ano: ");
+        String ano = entrada.nextLine();
+
+        String nomeDoArquivo = "alunos_Inadimplentes_" + mes + "_" + ano + ".txt";
+        Relatorios.gerarRelatorioAlunoInadimplente(listAluno, listReserva, nomeDoArquivo);
+    }
+
     public static void dividirDespesasIgualmente() {
         if (listAluno.isEmpty()) {
             System.out.println("Não há alunos cadastrados!");
             return;
         }
 
-        double totalDespesasFixas = calcularTotalDespesasFixas();
-        double totalDespesasVariadas = calcularTotalDespesasVariadas();
-
-        double totalDespesas = totalDespesasFixas + totalDespesasVariadas;
-        double valorDespesaPorAluno = totalDespesas / listAluno.size();
-
         for (Aluno aluno : listAluno) {
             System.out.println("\nAluno: " + aluno.getNome());
-            double valorContribuicao = calcularValorContribuicao(aluno, valorDespesaPorAluno);
-            System.out.println("Valor da contribuição mensal para o aluno " + aluno.getNome() + ": " + valorContribuicao);
+            double valorContribuicao = calcularValorContribuicao();
+            System.out.println(
+                    "Valor da contribuição mensal para o aluno " + aluno.getNome() + ": " + valorContribuicao + "R$");
         }
     }
 
     private static double calcularTotalDespesasFixas() {
         double totalDespesasFixas = 0;
         for (DespesaFixa despesaFixa : listDespesaFixa) {
-                totalDespesasFixas += despesaFixa.getValorFixa();
-            }
-            return totalDespesasFixas;
+            totalDespesasFixas += despesaFixa.getValorFixa();
         }
-
+        return totalDespesasFixas;
+    }
 
     private static double calcularTotalDespesasVariadas() {
         double totalDespesasVariadas = 0;
         for (DespesaVariada despesaVariada : listDespesaVariada) {
-                if (despesaVariada.getClassificacao() == 4 || despesaVariada.getClassificacao() == 5) {
-                    totalDespesasVariadas += despesaVariada.getValorVariada();
-                }
+            if (despesaVariada.getClassificacao() == 4 || despesaVariada.getClassificacao() == 5) {
+                totalDespesasVariadas += despesaVariada.getValorVariada();
             }
+        }
         return totalDespesasVariadas;
     }
 
-    private static double calcularValorContribuicao(Aluno aluno, double valorDespesaPorAluno) {
-        double valorContribuicao = valorDespesaPorAluno;
-
-        for (Reserva reserva : listReserva) {
-            if (reserva.getAluno() == aluno) {
-                valorContribuicao -= reserva.getValor();
+    static List<DespesaVariada> obterDespesasNaoIncluidas() {
+        List<DespesaVariada> despesasNaoIncluidas = new ArrayList<>();
+        for (DespesaVariada despesaVariada : listDespesaVariada) {
+            if (despesaVariada.getClassificacao() == 1 || despesaVariada.getClassificacao() == 2 ||
+                    despesaVariada.getClassificacao() == 3) {
+                despesasNaoIncluidas.add(despesaVariada);
             }
         }
+        return despesasNaoIncluidas;
+    }
+
+    private static double calcularValorContribuicao() {
+        double despesas = 0.0;
+        int quantidadeAlunos = listAluno.size();
+        despesas = calcularTotalDespesasFixas() + calcularTotalDespesasVariadas();
+        double valorContribuicao = (despesas / quantidadeAlunos);
 
         return valorContribuicao;
     }
 }
-
-
-
-
-
